@@ -1,6 +1,7 @@
 # Logistic-Regression-Case-Study
 Logistic regression case study assignment
-Assignment Created By Aric LaBarr
+Assignment 
+Created By Aric LaBarr
 Banking Insurance Product – Phase 1: IP – F1.H1
 
 Purpose
