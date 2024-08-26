@@ -43,5 +43,22 @@ ggplot(missing_proportions, aes(x = reorder(column, -missing_proportion), y = mi
 
 ```
 
+```{r}
+# Calculate the proportion of missing values for each column in the 'train' dataset
+missing_proportions <- train %>%
+  summarise(across(everything(), ~ mean(is.na(.)))) %>%  # Calculate the mean of missing values (is.na) for each column
+  pivot_longer(cols = everything(), names_to = "column", values_to = "missing_proportion") %>%  # Reshape the data to a long format
+  filter(missing_proportion > 0)  # Filter out columns with no missing values
+
+# Create the bar chart showing the proportion of missing values by column
+ggplot(missing_proportions, aes(x = reorder(column, -missing_proportion), y = missing_proportion)) +
+  geom_bar(stat = "identity", fill = "steelblue") +  # Create the bar plot with 'steelblue' bars
+  labs(title = "Proportion of Missing Values by Column",
+       x = "Column",
+       y = "Proportion of Missing Values") +  # Add labels for the title and axes
+  theme_minimal() +  # Apply a minimal theme to the plot
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  # Angle the x-axis labels at 45 degrees for readability
+
+```
 
 
